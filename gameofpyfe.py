@@ -3,6 +3,8 @@
 
 import os
 import random
+import sys
+import time
 
 
 class Cell:
@@ -72,7 +74,16 @@ def update_cells():
             cell.alive = cell.will_live
 
 
+delay = 0.1
+if len(sys.argv) > 1:
+    try:
+        delay = float(sys.argv[1]) * 0.001
+    except:
+        pass
+
 while True:
     print_grid()
     change_cells()
     update_cells()
+
+    time.sleep(delay)
